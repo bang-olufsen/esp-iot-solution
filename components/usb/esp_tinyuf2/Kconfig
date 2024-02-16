@@ -1,18 +1,15 @@
 menu "TinyUF2 Config"
     # We not support disable now
     config ENABLE_UF2_FLASHING
-        bool
+        bool 
         default y if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
         help
             Enable UF2, only support ESP SoC with USB-OTG
-    config ENABLE_UF2_USB_CONSOLE
-        bool "Enable USB Console For log"
-        default n
     config UF2_DISK_SIZE_MB
         int "USB Virtual Disk size(MB)"
         depends on ENABLE_UF2_FLASHING
         default 8
-        range 4 32
+        range 4 32 
     config UF2_FLASH_SIZE_MB
         int "Max APP size(MB)"
         depends on ENABLE_UF2_FLASHING
@@ -23,31 +20,15 @@ menu "TinyUF2 Config"
         depends on ENABLE_UF2_FLASHING
         default 32
         range 4 64
-    config TUSB_VID
-        hex "USB Device VID"
-        depends on ENABLE_UF2_FLASHING
-        default 0x303A
-    config TUSB_PID
-        hex "USB Device PID"
-        depends on ENABLE_UF2_FLASHING
-        default 0x8000
     config UF2_VOLUME_LABEL
         string "USB Disk Name"
         depends on ENABLE_UF2_FLASHING
         default "ESP32S2-UF2" if IDF_TARGET_ESP32S2
         default "ESP32S3-UF2" if IDF_TARGET_ESP32S3
-    config TUSB_MANUFACTURER
-        string "USB Device Manufacture"
+    config UF2_REV
+        string "UF2 Revision"
         depends on ENABLE_UF2_FLASHING
-        default "Espressif"
-    config TUSB_PRODUCT
-        string "Product Name"
-        depends on ENABLE_UF2_FLASHING
-        default "ESP TinyUF2"
-    config UF2_SERIAL_NUM
-        string "Product ID"
-        depends on ENABLE_UF2_FLASHING
-        default "12345678"
+        default "0.1"
     config UF2_INDEX_URL
         string "Product URL"
         depends on ENABLE_UF2_FLASHING

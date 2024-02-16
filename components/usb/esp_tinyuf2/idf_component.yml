@@ -12,8 +12,6 @@ dependencies:
   idf: ">=4.4"
   cmake_utilities: "0.*"
   leeebo/esp-inih: "0.*"
-  leeebo/tinyusb_src:
-    version: "~0.0.3"
 
 examples:
   - path: ../../../examples/usb/device/usb_uf2_ota

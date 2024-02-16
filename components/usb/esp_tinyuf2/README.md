@@ -1,4 +1,6 @@
 ## ESP TinyUF2
+> [!NOTE] Modified version. Depending on `esp_tinyusb`
+
 
 The enhanced version of [TinyUF2](https://github.com/adafruit/tinyuf2) for ESP32Sx, which supports over-the-air (OTA) updates for APP. **and supports dumping NVS key-value pairs to the config file, users can modify and write back to NVS**.
 

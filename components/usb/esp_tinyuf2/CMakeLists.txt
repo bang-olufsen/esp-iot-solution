@@ -10,17 +10,12 @@ idf_component_register(
                     "uf2/board_flash.c"
                     "uf2/ghostfat.c"
                     "msc/msc.c"
-                    "msc/usb_descriptors.c"
                     "esp_tinyuf2.c"
                     ${src_cdc}
-                    INCLUDE_DIRS "." "msc" ${inc_cdc}
+                    INCLUDE_DIRS "include"
                     PRIV_INCLUDE_DIRS "private_include"
                     REQUIRES app_update
-                    PRIV_REQUIRES usb nvs_flash vfs esp_ringbuf)
-
-idf_component_get_property(tusb_lib leeebo__tinyusb_src COMPONENT_LIB)
-cmake_policy(SET CMP0079 NEW)
-target_link_libraries(${tusb_lib} PRIVATE ${COMPONENT_LIB})
+                    PRIV_REQUIRES esp_tinyusb nvs_flash)
 
 execute_process(COMMAND git -C ${IDF_PATH} describe --dirty --always --tags
     OUTPUT_VARIABLE MY_IDF_VERSION

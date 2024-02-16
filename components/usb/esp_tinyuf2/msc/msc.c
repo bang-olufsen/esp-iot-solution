@@ -23,8 +23,9 @@
  */
 
 #include "esp_log.h"
-#include "tusb.h"
+#include "tinyusb.h"
 #include "uf2.h"
+#include "tinyuf2_msc.h"
 
 //--------------------------------------------------------------------+
 // MACRO TYPEDEF CONSTANT ENUM
@@ -36,6 +37,12 @@ static uint32_t _write_ms;
 
 static WriteState _wr_state = { 0 };
 static char *TAG = "MSC";
+
+void tinyuf2_msc_init()
+{
+    // Nothing to do
+    ESP_LOGI(TAG, "initialized");
+}
 
 //--------------------------------------------------------------------+
 // tinyusb callbacks
@@ -73,12 +80,12 @@ void tud_msc_inquiry_cb(uint8_t lun, uint8_t vendor_id[8], uint8_t product_id[16
 {
     (void) lun;
 
-    const char vid[] = CONFIG_TUSB_MANUFACTURER;
-    const char pid[] = CONFIG_TUSB_PRODUCT;
-    const char rev[] = UF2_APP_VERSION;
+    const char manu[] = CONFIG_TINYUSB_DESC_MANUFACTURER_STRING;
+    const char prod[] = CONFIG_TINYUSB_DESC_PRODUCT_STRING;
+    const char rev[] = CONFIG_UF2_REV;
 
-    memcpy(vendor_id, vid, sizeof(vid) > 8 ? 8 : sizeof(vid));
-    memcpy(product_id, pid, sizeof(pid) > 16 ? 16 : sizeof(pid));
+    memcpy(vendor_id, manu, sizeof(manu) > 8 ? 8 : sizeof(manu));
+    memcpy(product_id, prod, sizeof(prod) > 16 ? 16 : sizeof(prod));
     memcpy(product_rev, rev, sizeof(rev) > 4 ? 4 : sizeof(rev));
 }
 
