@@ -1,9 +1,3 @@
-set(src_cdc)
-set(inc_cdc)
-if(CONFIG_ENABLE_UF2_USB_CONSOLE)
-set(src_cdc "cdc/cdc.c" "cdc/tusb_cdc_acm.c" "cdc/tusb_console.c" "cdc/vfs_tinyusb.c")
-set(inc_cdc "cdc")
-endif()
 
 idf_component_register(
                     SRCS
@@ -11,7 +5,6 @@ idf_component_register(
                     "uf2/ghostfat.c"
                     "msc/msc.c"
                     "esp_tinyuf2.c"
-                    ${src_cdc}
                     INCLUDE_DIRS "include"
                     PRIV_INCLUDE_DIRS "private_include"
                     REQUIRES app_update
